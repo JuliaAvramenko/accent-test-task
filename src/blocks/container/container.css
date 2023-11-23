@@ -1,0 +1,18 @@
+:root {
+    --circle-diameter: 24px;
+    --range-wrapper-width: 200px;
+}
+
+.container {
+    font-family: "Gilroy-Light", sans-serif;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 200px;
+    margin-bottom: 0;
+
+    background-color: #4b4b4b;
+
+}

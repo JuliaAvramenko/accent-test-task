@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/pages/index.css">
+    <title>Accent Test Task</title>
+
+</head>
+
+<body class="container">
+    <section class="range" data-min="100" data-max="900" data-start-value="200" data-end-value="400">
+        <div class="range__container">
+            <article class="range__counter">
+                <input type="text" inputmode="numeric" class="range__input-number" id="range-1">
+                <span class="range__number">₽</span>
+            </article>
+            <article class="range__counter">
+                <input type="text" inputmode="numeric" class="range__input-number" id="range-2">
+                <span class="range__number">₽</span>
+            </article>
+        </div>
+        <div class="range__wrapper">
+            <div class="slider-track"></div>
+            <input type="range" id="slider-1">
+            <input type="range" id="slider-2">
+        </div>
+    </section>
+    <script src="index.js"></script>
+</body>
+
+</html>
