@@ -25,8 +25,8 @@ function init() {
     sliderTwoNode.max = SLIDER_TRACK_MAX_VALUE
     sliderTwoNode.value = rangeNode.dataset.endValue
 
-    displayInputOneNode.value = rangeNode.dataset.startValue
-    displayInputTwoNode.value = rangeNode.dataset.endValue
+    setCurrencyValue(displayInputOneNode, rangeNode.dataset.startValue)
+    setCurrencyValue(displayInputTwoNode, rangeNode.dataset.endValue)
 
     window.onload = function () {
         fillColor()
@@ -42,39 +42,53 @@ displayInputTwoNode.addEventListener("input", changeMaxInputHandler)
 
 displayInputOneNode.addEventListener("blur", (e) => {
 
-    if (Number(displayInputOneNode.value) < SLIDER_TRACK_MIN_VALUE) {
-        displayInputOneNode.value = SLIDER_TRACK_MIN_VALUE
+    if (getCurrencyValue(displayInputOneNode) < SLIDER_TRACK_MIN_VALUE) {
+        setCurrencyValue(displayInputOneNode, SLIDER_TRACK_MIN_VALUE)
     }
 
 })
 displayInputTwoNode.addEventListener("blur", (e) => {
 
-    if (Number(displayInputTwoNode.value) > SLIDER_TRACK_MAX_VALUE) {
-        displayInputTwoNode.value = SLIDER_TRACK_MAX_VALUE
+    if (getCurrencyValue(displayInputTwoNode) > SLIDER_TRACK_MAX_VALUE) {
+        setCurrencyValue(displayInputTwoNode, SLIDER_TRACK_MAX_VALUE)
     }
 
 })
 
+// Изменяем value для input
+function setCurrencyValue(node, value) {
+    node.value = `${value} ₽`
+}
+
+function getCurrencyValue(node) {
+    const value = Number(node.value.replace(/[^0-9]/g, ''))
+    return value
+}
+
 // Хендлеры для изменения инпутов
 
 function changeMinInputHandler(e) {
-    e.target.value = Number(e.target.value.replace(/[^0-9]/g, ''))
-    if (e.target.value < SLIDER_TRACK_MIN_VALUE) {
+    const value = getCurrencyValue(displayInputOneNode)
+    setCurrencyValue(displayInputOneNode, value)
+
+    if (value < SLIDER_TRACK_MIN_VALUE) {
         sliderOneNode.value = SLIDER_TRACK_MIN_VALUE
     }
-    if (e.target.value <= Number(sliderTwoNode.value) - MIN_GAP) {
-        sliderOneNode.value = e.target.value
+    if (value <= Number(sliderTwoNode.value) - MIN_GAP) {
+        sliderOneNode.value = value
         fillColor()
     }
 }
 function changeMaxInputHandler(e) {
-    e.target.value = Number(e.target.value.replace(/[^0-9]/g, ''))
-    if (e.target.value > SLIDER_TRACK_MAX_VALUE) {
+    const value = getCurrencyValue(displayInputTwoNode)
+    setCurrencyValue(displayInputTwoNode, value)
+
+    if (value > SLIDER_TRACK_MAX_VALUE) {
         sliderTwoNode.value = SLIDER_TRACK_MAX_VALUE
     }
 
-    if (e.target.value >= Number(sliderOneNode.value) + MIN_GAP) {
-        sliderTwoNode.value = e.target.value
+    if (value >= Number(sliderOneNode.value) + MIN_GAP) {
+        sliderTwoNode.value = value
         fillColor()
     }
 }
@@ -87,7 +101,7 @@ function slideOneInputHandler() {
     if (Number(sliderTwoNode.value) - Number(sliderOneNode.value) <= MIN_GAP) {
         sliderOneNode.value = Number(sliderTwoNode.value) - MIN_GAP;
     }
-    displayInputOneNode.value = sliderOneNode.value;
+    setCurrencyValue(displayInputOneNode, sliderOneNode.value)
     fillColor();
 }
 
@@ -96,7 +110,7 @@ function slideTwoInputHandler() {
     if (Number(sliderTwoNode.value) - Number(sliderOneNode.value) <= MIN_GAP) {
         sliderTwoNode.value = Number(sliderOneNode.value) + MIN_GAP;
     }
-    displayInputTwoNode.value = sliderTwoNode.value;
+    setCurrencyValue(displayInputTwoNode, sliderTwoNode.value)
     fillColor();
 }
 
