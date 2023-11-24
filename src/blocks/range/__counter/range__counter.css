@@ -10,3 +10,10 @@
     font-weight: 400;
     line-height: normal;
 }
+
+.range__counter-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
