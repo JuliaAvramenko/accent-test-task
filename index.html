@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/vendor/normalize.css">
+    <link rel="stylesheet" href="./src/fonts/fonts.css">
     <link rel="stylesheet" href="./src/pages/index.css">
     <title>Accent Test Task</title>
 
@@ -14,17 +16,19 @@
         <div class="range__container">
             <article class="range__counter">
                 <input type="text" inputmode="numeric" class="range__input-number" id="range-1">
-                <span class="range__number">₽</span>
+                <span>₽</span>
             </article>
             <article class="range__counter">
+
                 <input type="text" inputmode="numeric" class="range__input-number" id="range-2">
-                <span class="range__number">₽</span>
+                <span>₽</span>
+
             </article>
         </div>
         <div class="range__wrapper">
-            <div class="slider-track"></div>
-            <input type="range" id="slider-1">
-            <input type="range" id="slider-2">
+            <div class="range__slider-track"></div>
+            <input type="range" id="slider-1" class="range__input-slider">
+            <input type="range" id="slider-2" class="range__input-slider">
         </div>
     </section>
     <script src="index.js"></script>

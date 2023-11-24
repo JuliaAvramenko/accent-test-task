@@ -4,7 +4,7 @@ const sliderOneNode = rangeNode.querySelector("#slider-1")
 const sliderTwoNode = rangeNode.querySelector("#slider-2")
 const displayInputOneNode = rangeNode.querySelector("#range-1")
 const displayInputTwoNode = rangeNode.querySelector("#range-2")
-const sliderTrack = document.querySelector(".slider-track")
+const sliderTrack = document.querySelector(".range__slider-track")
 
 // CSS variables
 const circleDiameter = Number(getComputedStyle(document.body).getPropertyValue('--circle-diameter').replace('px', ''))
@@ -13,7 +13,7 @@ const sliderTrackLength = Number(getComputedStyle(document.body).getPropertyValu
 // Constants
 const SLIDER_TRACK_MIN_VALUE = rangeNode.dataset.min
 const SLIDER_TRACK_MAX_VALUE = rangeNode.dataset.max
-const MIN_GAP = circleDiameter / sliderTrackLength * (SLIDER_TRACK_MAX_VALUE - SLIDER_TRACK_MIN_VALUE) + 10
+const MIN_GAP = circleDiameter / sliderTrackLength * (SLIDER_TRACK_MAX_VALUE - SLIDER_TRACK_MIN_VALUE) + 15
 
 
 function init() {
@@ -30,8 +30,6 @@ function init() {
 
     window.onload = function () {
         fillColor()
-        //slideOneInputHandler();
-        //slideTwoInputHandler();
     }
 }
 
@@ -60,30 +58,24 @@ displayInputTwoNode.addEventListener("blur", (e) => {
 // Хендлеры для изменения инпутов
 
 function changeMinInputHandler(e) {
-    e.target.value = e.target.value.replace(/[^0-9]/g, '')
-    if (Number(e.target.value) < SLIDER_TRACK_MIN_VALUE) {
+    e.target.value = Number(e.target.value.replace(/[^0-9]/g, ''))
+    if (e.target.value < SLIDER_TRACK_MIN_VALUE) {
         sliderOneNode.value = SLIDER_TRACK_MIN_VALUE
     }
-    if (Number(e.target.value) <= Number(sliderTwoNode.value) - MIN_GAP) {
+    if (e.target.value <= Number(sliderTwoNode.value) - MIN_GAP) {
         sliderOneNode.value = e.target.value
         fillColor()
     }
-    else {
-        //e.target.value = sliderOneNode.value
-    }
 }
 function changeMaxInputHandler(e) {
-    e.target.value = e.target.value.replace(/[^0-9]/g, '')
-    if (Number(e.target.value) > SLIDER_TRACK_MAX_VALUE) {
+    e.target.value = Number(e.target.value.replace(/[^0-9]/g, ''))
+    if (e.target.value > SLIDER_TRACK_MAX_VALUE) {
         sliderTwoNode.value = SLIDER_TRACK_MAX_VALUE
     }
 
-    if (Number(e.target.value) >= Number(sliderOneNode.value) + MIN_GAP) {
+    if (e.target.value >= Number(sliderOneNode.value) + MIN_GAP) {
         sliderTwoNode.value = e.target.value
         fillColor()
-    }
-    else {
-        //e.target.value = sliderTwoNode.value
     }
 }
 

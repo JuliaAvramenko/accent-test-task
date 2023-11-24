@@ -1,9 +1,7 @@
 .range__container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
     width: 200px;
-    height: 23px;
     margin-bottom: 20px;
 
 }

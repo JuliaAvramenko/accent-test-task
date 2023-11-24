@@ -1,0 +1,10 @@
+.range__input-number {
+    width: 30px;
+    outline: none;
+    appearance: none;
+    background-color: inherit;
+    border: none;
+    color: #FFF;
+    text-align: end;
+    margin-left: 1px;
+}
